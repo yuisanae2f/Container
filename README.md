@@ -8,7 +8,7 @@ Pointer slicer
 Basic Memory Allocator.
 
 # [Pair](./Container/Pair.md)
-- binds two data in a structure.
+Type-free Pair Structure.
 
 # [Map](./Container/Map.md)
 - is an unordered map.

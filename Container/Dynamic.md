@@ -7,6 +7,7 @@ typedef struct ae2f_Dynamic {
 }* ptr_ae2f_Dynamic;
 ```
 
+# ready
 ## ae2f_Dynamic
 ```c
 ptr_ae2f_Dynamic
@@ -40,26 +41,7 @@ ae2f_Dynamic_copy(
 ```
 copies the `src` to `dest`.  
 
-## ae2f_Dynamic_puts
-```c
-uint64_t 
-ae2f_Dynamic_puts(
-	ptr_ae2f_Dynamic dest,
-	ptr_ae2f_Dynamic src
-);
-```
-copies 
-
-## ae2f_Dynamic_free
-```c
-ptr_ae2f_Dynamic 
-ae2f_Dynamic_free(
-	ptr_ae2f_Dynamic block
-);
-```
-frees the memory from `block`.  
-returns `block`.
-
+# resize
 ## ae2f_Dynamic_re
 ```c
 ptr_ae2f_Dynamic 
@@ -83,6 +65,18 @@ ae2f_Dynamic_re_(
 resizes `dest` as `srcLen` and change its value as `src`.  
 returns `dest`.
 
+# kill
+## ae2f_Dynamic_free
+```c
+ptr_ae2f_Dynamic 
+ae2f_Dynamic_free(
+	ptr_ae2f_Dynamic block
+);
+```
+frees the memory from `block`.  
+returns `block`.
+
+# cal
 ## ae2f_Dynamic_weigh
 ```c
 int8_t 
@@ -96,3 +90,14 @@ compares `a` and `b`.
 Provided two are the same, it returs zero.  
 Provided `a` is greater than `b`, it returns -1.  
 Otherwise it returns 1.
+
+## ae2f_Dynamic_puts
+```c
+uint64_t 
+ae2f_Dynamic_puts(
+	ptr_ae2f_Dynamic dest,
+	ptr_ae2f_Dynamic src
+);
+```
+copies `src` to `dest` without resizing the memory.  
+returns the byte written from `src`.

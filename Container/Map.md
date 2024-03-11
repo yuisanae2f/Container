@@ -1,69 +1,134 @@
-# #include
-## <a href="../Container.md#Pair">ae2f</a>_<a href="./Pair.md">Pair</a> <d id="_Pair"></d>
-binds two pieces of data to the same location, `c`.  
-`val` points where the value is allocated.
+# Map
+> Type-Free unordered map.  
+> is able to use [`ae2f_Dynamic`](./Dynamic.md) as an index.  
+> sorts its values by its keys.
 
-# <a href="../Container.md#Map">ae2f</a>_Map <d id="_Map"></d>
+Code
 ```c
-struct ae2f_Map {
+typedef struct ae2f_Map {
 	struct ae2f_Dynamic pairs;
-	unsigned long long len;
-	unsigned long long _amp; 
-	unsigned long long _div;
-};
+	uint64_t len;
+	uint64_t _amp; uint64_t _div;
+} *ptr_ae2f_Map;
 ```
-is an unordered map similar to the hashmap.  
-but it is not the same.  
 
-provides the map, which has a key.
+Ref
+- [ae2f_Dynamic](./Dynamic.md)
 
-## struct ae2f_Map* ae2f_Map(struct ae2f_Map* _this); <d id="init"></d>
-initialies the value from `_this`.
+## `len`
+> represents the count of data it stores.  
+
+Warnings
+> If you are not aware of what you doing, do not change it manually.
+
+
+## `_amp`, `_div`
+> are used for calculation of newly allocating the existing memory.  
+
+> When the `len` times the size of [`ae2f_Dynamic`](./Dynamic.md) is greater than the `len` of `pairs`,
+> the new memory length will be suggested as
+> `(pairs.len * (1 + (_amp / _div)))`.  
+> When its value is lower than `pairs.len + 1`, the later one would be the new length of the memory, `pairs`.
+
+> You are able to change them manually.
+
+Ref
+- [ae2f_Dynamic](./Dynamic.md)
+
+# ready
+## ae2f_Map
+> initialies the `map`.
+
+> `_amp` will be set as 1.  
+> `_div` will be set as 9.
+
+Code
 ```c
-struct ae2f_Map a; ae2f_Map(&a);
+ptr_ae2f_Map 
+ae2f_Map(
+	ptr_ae2f_Map map
+);
 ```
 
-## struct ae2f_Map* ae2f_Map_add(struct ae2f_Map* _this, struct ae2f_Dynamic k, struct ae2f_Dynamic v);
-copies of the pair of value of `k` and `v` and adds this map `_this`.  
-Since <a href="#_Dynamic">`dynamics`</a> as parametres <a href="./Dynamic.md#copy">has been duplicated</a>,
-still the original ones are need to be freed after the map has been freed.
+Ref
+- [_amp, _div](#_amp-_div)
+
+## ae2f_Map_copy
+> copies the value from `src` to `dest`.
+
+Code
 ```c
-struct ae2f_Map a; ae2f_Map(&a);
-struct ae2f_Dynamic k, v;
-
-ae2f_Dynamic_(&k, "Hello World!", 15);
-ae2f_Dynamic_(&v, "Goodbye World!", 23);
-
-ae2f_Map_add(&a, k, v);
-
-ae2f_Dynamic_free(&k); ae2f_Dynamic_free(&v);
-ae2f_Map_free(&a);
+ptr_ae2f_Map 
+ae2f_Map_copy(
+	ptr_ae2f_Map src,
+	ptr_ae2f_Map dest
+);
 ```
-## struct ae2f_Map* ae2f_Map_del(struct ae2f_Map* _this, struct ae2f_Pair* wh);
-deletes the value in `wh` as a pointer of value which belongs to `_this`.  
-pointer of value could be found via `ae2f_Map_at`.
 
-## struct ae2f_Pair* ae2f_Map_at(struct ae2f_Map* _this, struct ae2f_Dynamic key);
-returns the pointer of the value where the `key` matches the key from the structure, `_this`.  
-returns zero when `key` has not been found.
+# kill
+## ae2f_Map_free
+> frees the memory of `block`.
+
+Code
 ```c
-struct ae2f_Map a; ae2f_Map(&a);
-struct ae2f_Dynamic k, v;
-
-ae2f_Dynamic_(&k, "Hello World!", 15);
-ae2f_Dynamic_(&v, "Goodbye World!", 23);
-
-ae2f_Map_add(&a, k, v);
-
-printf("%s", ae2f_Map_at(&a, k)->val.bt1);	//Goodbye World!
-
-ae2f_Dynamic_free(&k); ae2f_Dynamic_free(&v);
-ae2f_Map_free(&a);
+ptr_ae2f_Map 
+ae2f_Map_free(
+	ptr_ae2f_Map block
+);
 ```
 
-## struct ae2f_Map ae2f_Map_free(struct ae2f_Map _this); <d id="free"></d>
-will reset the map `_this`.
+# access
+## ae2f_Map_at
+> tries to find the value which key matches `key` from `map`.  
+> returns the address which points the found value.
+
+> The result may not be exact.  
+> Provided `map` has no value which matches `key`,
+> this function will return the valid address within `map`, still not exact to `key`.
+
+Code
 ```c
-struct ae2f_Map a; ae2f_Map(&a);
-ae2f_Map_free(&a);
+ptr_ae2f_Pair 
+ae2f_Map_at(
+	ptr_ae2f_Map map,		
+	ptr_ae2f_Dynamic key	
+);
 ```
+
+Ref
+- [ptr_ae2f_Dynamic](./Dynamic.md)
+- [ptr_ae2f_Pair](./Pair.md)
+
+## ae2f_Map_add
+> tries to find the value which key matches `key` from `map`.  
+> if found, set its value as `value`.  
+> unless, makes the new one as `key` and `value`.
+
+Code
+```c
+ptr_ae2f_Map 
+ae2f_Map_add(
+	ptr_ae2f_Map map,
+	ptr_ae2f_Dynamic key,
+	ptr_ae2f_Dynamic value
+);
+```
+
+Ref
+- [ae2f_Map_at](#ae2f_map_at)
+- [ptr_ae2f_Dynamic](./Dynamic.md)
+
+## ae2f_Map_del
+> Deletes `tar` from `map`, when `tar` is valid to `map`.
+
+Code
+```c
+ptr_ae2f_Map 
+ae2f_Map_del(
+	ptr_ae2f_Map map, 
+	ptr_ae2f_Pair tar
+);
+```
+
+Ref
+- [ptr_ae2f_Pair](./Pair.md)

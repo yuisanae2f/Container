@@ -1,41 +1,46 @@
-# ae2f_Context
+# Context
+> binder for the memory.  
+> When this is freed, 
+
+Code
 ```c
-struct ae2f_Context {
+typedef struct ae2f_Context {
 	struct ae2f_Dynamic c;
-	unsigned long long len;
-	unsigned long long _amp;
-	unsigned long long _div;
-};
+	uint64_t len, _amp, _div;
+}*ptr_ae2f_Context;
 ```
-is the binder for the temporary dynamic allocation on scope.  
-could be used when you want to manage `temporary dynamic allocation` in the same scope.
 
+Ref
+- [Dynamic](./Dynamic.md)
+
+## `len`
+> represents the count of data it stores.  
+
+Warnings
+> If you are not aware of what you doing, do not change it manually.
+
+
+## `_amp`, `_div`
+> are used for calculation of newly allocating the existing memory.  
+
+> When the `len` times the size of [`ae2f_Dynamic`](./Dynamic.md) is greater than the `len` of `c`,
+> the new memory length will be suggested as
+> `(c.len * (1 + (_amp / _div)))`.  
+> When its value is lower than `c.len + 1`, the later one would be the new length of the memory, `c`.
+
+> You are able to change them manually.
+
+Ref
+- [ae2f_Dynamic](./Dynamic.md)
+
+# ready
 ## ae2f_Context
-```c
-struct ae2f_Context* ae2f_Context(struct ae2f_Context* _this);
-```
-initialises `_this` ready for action.
-```c
-struct ae2f_Context ctx; ae2f_Context(&ctx);
-```
 
-## struct ae2f_Dynamic* ae2f_Context_malloc(struct ae2f_Context* _this, unsigned long long len);
-allocates the room chained by `_this`, in the size of `len`.  
-returns the address of the room allocated.
-```c
-struct ae2f_Context ctx; ae2f_Context(&ctx);
-struct ae2f_Dynamic* a = ae2f_Context_malloc(&ctx, 4);
-*(a->c.bt4) = 3; printf("%d", *(a->c.bt4));	// 3
-```
 
-## struct ae2f_Context* ae2f_Context_free(struct ae2f_Context* _this);
-free all the room chained by `_this`.  
-returns the address of `_this`.
+Code
 ```c
-struct ae2f_Context ctx; ae2f_Context(&ctx);
-struct ae2f_Dynamic* a = ae2f_Context_malloc(&ctx, 4);
-*(a->c.bt4) = 3; printf("%d", *(a->c.bt4));	// 3
-
-ae2f_Context_free(&ctx);
-printf("%d", *(a->c.bt4));			// err
+ptr_ae2f_Context 
+ae2f_Context(
+	ptr_ae2f_Context a	// container
+);
 ```

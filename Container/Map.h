@@ -8,8 +8,7 @@
 #define AE2F_MAP
 typedef struct ae2f_Map {
 	struct ae2f_Dynamic pairs;
-	uint64_t len;
-	uint64_t _amp; uint64_t _div;
+	uint64_t len, _amp, _div;
 }*ptr_ae2f_Map;
 #endif // !AE2F_MAP
 #ifndef AE2F_MAP_FUN

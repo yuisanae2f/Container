@@ -1,6 +1,6 @@
 # Context
 > binder for the memory.  
-> When this is freed, <>
+> When this is freed, its children will also be freed.
 
 Code
 ```c
@@ -35,12 +35,55 @@ Ref
 
 # ready
 ## ae2f_Context
-
+> initialises `ctx`.
 
 Code
 ```c
 ptr_ae2f_Context 
 ae2f_Context(
-	ptr_ae2f_Context a	// container
+	ptr_ae2f_Context ctx
 );
 ```
+
+# kill
+## ae2f_Context_free
+> frees the memory of `block` and its owned memory blocks.
+
+Code
+```c
+ptr_ae2f_Context 
+ae2f_Context_free(
+	ptr_ae2f_Context block
+);
+```
+
+# oper
+## ae2f_Context_malloc
+> creates the memory on `ctx` as a length of `len`.
+
+Code
+```c
+ptr_ae2f_Dynamic 
+ae2f_Context_malloc(
+	ptr_ae2f_Context ctx,
+	uint64_t len
+);
+```
+
+Ref
+- [ptr_ae2f_Dynamic](./Dynamic.md)
+
+## ae2f_Context_del
+> deletes the memory of `block` from `ctx`.
+
+Code
+```c
+ptr_ae2f_Context 
+ae2f_Context_del(
+	ptr_ae2f_Context ctx, 
+	ptr_ae2f_Dynamic block
+);
+```
+
+Ref
+- [ptr_ae2f_Dynamic](./Dynamic.md)

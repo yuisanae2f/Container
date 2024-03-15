@@ -59,7 +59,10 @@ ae2f_Dimension_free(
 
 # get
 ## ae2f_Dimension_point
-> points where the memory allocated
+> points where the memory allocated at `matrix`.  
+> `pointArray` is the direction to point at each `depth` level.
+
+> Hence `depth` would be the length of `pointArray`.
 
 ```c
 ptr_ae2f_Dimension 
@@ -69,4 +72,3 @@ ae2f_Dimension_point(
 	uint64_t* pointArray
 );
 ```
-

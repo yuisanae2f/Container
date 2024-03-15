@@ -56,3 +56,17 @@ ae2f_Dimension_free(
 	ptr_ae2f_Dimension block
 );
 ```
+
+# get
+## ae2f_Dimension_point
+> points where the memory allocated
+
+```c
+ptr_ae2f_Dimension 
+ae2f_Dimension_point(
+	ptr_ae2f_Dimension matrix,
+	uint64_t depth,
+	uint64_t* pointArray
+);
+```
+

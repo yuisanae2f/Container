@@ -187,7 +187,7 @@ namespace ae2f {
 			struct ae2f_Pair obj;
 
 		public:
-			typedef ptr_ae2f_Pair ptr;
+			typedef ptr_ae2f_Pair binder;
 
 			/// <param name="a">: key</param>
 			/// <param name="b">: val</param>

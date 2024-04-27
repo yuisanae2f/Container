@@ -23,7 +23,7 @@ AE2F_CPP_PREFIX AE2F ptr_ae2f_Context ae2f_Context(
 /// <param name="b">: length for new memory allocated</param>
 AE2F_CPP_PREFIX AE2F uint64_t ae2f_Context_malloc(
 	ptr_ae2f_Context a,	// container
-	uint64_t b				// length for new memory allocated
+	uint64_t b			// length for new memory allocated
 );
 
 /// <param name="a">: container to be freed</param>
@@ -156,7 +156,7 @@ namespace ae2f {
 		private:
 			struct ae2f_Context obj;
 		public:
-			typedef ptr_ae2f_Context ptr;
+			typedef ptr_ae2f_Context binder;
 
 			inline Context();
 			inline Context(setter a);

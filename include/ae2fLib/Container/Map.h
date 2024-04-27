@@ -163,11 +163,11 @@ namespace ae2f {
 		private:
 			struct ae2f_Map obj;
 		public:
-			typedef ptr_ae2f_Map ptr;
+			typedef ptr_ae2f_Map binder;
 
 			inline Map();
 			/// <param name="a">: source value</param>
-			inline Map(ptr a);
+			inline Map(binder a);
 			/// <param name="a">: source value</param>
 			inline Map(struct ae2f_Map a);
 			/// <param name="a">: source value</param>

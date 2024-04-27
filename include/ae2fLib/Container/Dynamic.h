@@ -261,7 +261,7 @@ namespace ae2f {
 		private:
 			struct ae2f_Dynamic obj;
 		public:
-			typedef ptr_ae2f_Dynamic ptr;
+			typedef ptr_ae2f_Dynamic binder;
 
 			/// <param name="a">: length</param>
 			inline Dynamic(
@@ -550,7 +550,7 @@ inline ae2f_ffun::getter ae2f_ffun::starter::link(
 inline ae2f_name::Dynamic::Dynamic(uint64_t a)
 	: setter(fun<Dynamic>::starter(&obj).alloc(a)) {}
 
-inline ae2f_name::Dynamic::Dynamic(std::string a) 
+inline ae2f_name::Dynamic::Dynamic(std::string a)
 	: setter(fun<Dynamic>::starter(&obj).alloc(a.c_str(), a.size())) {}
 
 inline ae2f_name::Dynamic::Dynamic(getter a)
@@ -573,7 +573,7 @@ inline ae2f_ffun::setter& ae2f_name::Dynamic::re(std::initializer_list<v> a) {
 }
 
 inline ae2f_ffun::setter& ae2f_name::Dynamic::re(std::string a) {
-	
+
 	return ((setter*)this)->re(a.c_str(), a.size());;
 }
 inline ae2f_name::Dynamic::~Dynamic() {

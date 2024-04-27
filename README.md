@@ -1,23 +1,26 @@
 # Container : [ae2fLib](https://github.com/yuisanae2f/ae2fLib)
-> Memory Allocator C.
+> Memory Allocator for C.
 
-For Linkers
-- [Windows](https://github.com/yuisanae2f/Container/tree/Windows)
+Warning:
+> Those structures are designed as the container for the primitive types.  
+> Storing data such as a class is not recommended.  
 
-# [Unit](./Container/Unit.md)
+> It will not execute the `Destructor` of the `Class`.
+
+# [Unit](./include/ae2fLib/Container/Unit.md)
 > Pointer slicer
 
-# [Dynamic](./Container/Dynamic.md)
+# [Dynamic](./include/ae2fLib/Container/Dynamic.md)
 > Basic Memory Allocator.
 
-# [Pair](./Container/Pair.md)
+# [Pair](./include/ae2fLib/Container/Pair.md)
 > Type-free Pair Structure.
 
-# [Map](./Container/Map.md)
+# [Map](./include/ae2fLib/Container/Map.md)
 > is an unordered map.
 
-# [Dimension](./Container/Dimension.md)
+# [Dimension](./include/ae2fLib/Container/Dimension.md)
 > provides the feature of managing the multidimensional array.
 
-# [Context](./Container/Context.md)
+# [Context](./include/ae2fLib/Container/Context.md)
 > is the binder for the temporary dynamic allocation on scope.

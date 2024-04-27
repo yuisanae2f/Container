@@ -1,10 +1,5 @@
-#ifndef AE2F
-#ifdef AE2F_EXPORT
-#define AE2F __declspec(dllexport)
-#else
-#define AE2F __declspec(dllimport)
-#endif // AE2F_EXPORT
-#endif // !AE2F
+#define AE2F 
+
 #ifndef AE2F_UNIT
 #define AE2F_UNIT
 

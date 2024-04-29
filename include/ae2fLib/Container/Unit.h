@@ -36,3 +36,19 @@ union ae2f_Unit {
 /// <param name="b">: type name</param>
 #define ae2f_Unit_v(a, b) union virtual_##b { a b##* p; ae2f_Unit_param }
 #endif // !AE2F_UNIT
+
+#ifdef AE2F_CPP
+
+#ifndef AE2F_DEF_CPP
+#define AE2F_DEF_CPP
+namespace ae2f {
+	template<typename t>
+	class def {
+	public:
+		typedef t orig;
+		typedef t* ptr;
+	};
+}
+#endif
+
+#endif // AE2F_CPP

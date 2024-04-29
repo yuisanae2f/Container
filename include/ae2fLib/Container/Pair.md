@@ -14,7 +14,7 @@ Ref
 - [ae2f_Unit](./Pair.md)
 
 ## `val`
-points where 
+> points where the value stays.
 
 # ae2f_Dynamic_owned
 > Its memory must not be managed directly.
@@ -148,3 +148,137 @@ Ref
 - [ae2f_Dynamic_weigh](./Dynamic.md#ae2f_dynamic_weigh)
 - [ptr_ae2f_Dynamic](./Dynamic.md)
 - [selector](#selector)
+
+# Abstraction
+## getter
+### _key
+> Stands for key of the pair.
+
+### _val
+> Stands for value of the pair.
+
+### get
+> returns the [Linked](./Dynamic.md#linked--getter) as a getter.
+
+t
+> decides where to read from key or value.  
+> must be either [`_key`](#_key) or [`_val`](#_val).
+
+Code
+```cpp
+template<typename t>
+inline Container::Linked get();
+```
+
+Ref
+- [ae2f_Pair_set](#ae2f_pair_set)
+- [Linked](./Dynamic.md#linked--getter)
+
+## setter : [getter](#getter)
+
+### free
+- [ae2f_Pair_free](#ae2f_pair_free)
+
+### set
+> returns the setter of current pair.  
+
+t
+> decides where to read from key or value.  
+> must be either [`_key`](#_key) or [`_val`](#_val).
+
+
+Code
+```cpp
+template<typename t>
+inline el<t> set();
+```
+
+Ref
+- [_key](#_key)
+- [_val](#_val)
+
+## el
+> is the manager of the Pair.  
+> helps to manage the memory for the one side while preventing to corrupt the other.
+
+### template
+tt
+> decides where to manage key or value of the Pair.  
+> must be either [`_key`](#_key) or [`_val`](#_val).
+
+### ()
+Code
+```cpp
+Linked operator()()
+```
+
+- [getter::get](#get)
+
+Ref
+- [ae2f_Pair_get](#ae2f_pair_get)
+- [Linked](./Dynamic.md#linked--getter)
+
+Code
+> returns itself.
+
+> changes the value of the [targetted destination](#template).
+
+```cpp
+el& operator()(
+	Linked* src
+);
+```
+
+```cpp
+el& operator()(
+	Linked src
+);
+```
+
+Ref
+- [ae2f_Pair_set](#ae2f_pair_set)
+- [Linked](./Dynamic.md#linked--getter)
+
+## starter
+### alloc
+Code
+```cpp
+setter alloc(
+	Linked key,
+	Linked val
+);
+```
+
+```cpp
+setter alloc(
+	Linked* key,
+	Linked* val
+);
+```
+
+Ref
+- [ae2f_Pair](#ae2f_pair)
+- [setter](#setter--getter)
+- [Linked](./Dynamic.md#linked--getter)
+
+### copy
+Code
+```cpp
+setter copy(
+	getter src
+);
+```
+
+```cpp
+setter copy(
+	getter* src
+);
+```
+
+Ref
+- [ae2f_Pair_copy](#ae2f_pair_copy)
+- [setter](#setter--getter)
+- [getter](#getter)
+
+# Classes
+## Pair : [setter](#setter--getter)

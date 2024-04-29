@@ -45,6 +45,17 @@ ae2f_Context(
 );
 ```
 
+## ae2f_Context_copy
+> copies the values from `src` to `dest`.
+
+Code
+```c
+void ae2f_Context_copy(
+	ptr_ae2f_Context dest,
+	ptr_ae2f_Context src
+);
+```
+
 # kill
 ## ae2f_Context_free
 > frees the memory of `block` and its owned memory blocks.
@@ -87,3 +98,54 @@ ae2f_Context_del(
 
 Ref
 - [ptr_ae2f_Dynamic](./Dynamic.md)
+
+# Abstraction
+## setter 
+### free
+- [ae2f_Context_free](#ae2f_context_free)
+### malloc
+- [ae2f_Context_malloc](#ae2f_context_malloc)
+
+## el : [Dynamic](./Dynamic.md#abstraction)::[getter](./Dynamic.md#getter)
+### _root
+
+### id
+> retuns the pointer of the [`Context`](#context)
+
+Code
+```cpp
+_root::ptr id()
+```
+
+Ref
+- [_root](#_root)
+
+### del
+- [ae2f_Context_del](#ae2f_context_del)
+
+### re
+Code
+```cpp
+el& re(uint64_t bytesize);
+```
+
+Ref
+- [ae2f_Dynamic_re](./Dynamic.md#ae2f_dynamic_re)
+
+Code
+```cpp
+el& re(Linked src);
+```
+
+Ref
+- [Dynamic/Linked](./Dynamic.md#linked--getter)
+- [ae2f_Dynamic_re](./Dynamic.md#ae2f_dynamic_re_)
+
+## starter
+### alloc
+- [ae2f_Context](#ae2f_context)
+### copy
+- [ae2f_Context_copy](#ae2f_context_copy)
+
+# Classes
+## Context : [setter](#setter)

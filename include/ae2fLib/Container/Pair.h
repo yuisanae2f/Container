@@ -91,45 +91,45 @@ namespace ae2f {
 		class starter;
 	};
 
-	class fun<Container::Pair>::getter {
+	class fun<Container::Pair>::getter : public def<struct ae2f_Pair> {
 	private:
-		struct ae2f_Pair* p;
+		ptr p;
 	public:
 		class _key;
 		class _val;
 
 		/// <param name="a">: base ptr</param>
 		inline getter(
-			ptr_ae2f_Pair a	// base ptr
+			ptr a	// base ptr
 		);
 		
 		/// <typeparam name="t">: _key or _val only</typeparam>
 		template<typename t>
 		inline Container::Linked get();
 
-		inline ptr_ae2f_Pair raw();
+		inline ptr raw();
 	};
 	class fun<Container::Pair>::setter : public getter {
 	public:
 		/// <param name="a">: base ptr</param>
 		inline setter(
-			struct ae2f_Pair* a	// base ptr
+			ptr a	// base ptr
 		);
 
 		inline starter free();
 
 		template<typename tt> 
-		class el {
+		class el : public def<struct ae2f_Pair> {
 		private:
-			ptr_ae2f_Pair p;
+			ptr p;
 		public:
-			inline ptr_ae2f_Pair raw() {
+			inline ptr raw() {
 				return this->p;
 			}
 
 			/// <param name="a">: base ptr</param>
 			inline el(
-				ptr_ae2f_Pair a	// base ptr
+				ptr a	// base ptr
 			);
 
 			inline Container::Linked operator()();
@@ -137,24 +137,24 @@ namespace ae2f {
 			/// <param name="a">: setter val ptr</param>
 			inline el<tt>& operator()(
 				Container::Linked* a	// setter val ptr
-				);
+			);
 
 			/// <param name="a">: setter val ptr</param>
 			inline el<tt>& operator()(
 				Container::Linked a	// setter val
-				);
+			);
 		};
 
 		template<typename t>
 		inline el<t> set();
 	};
-	class fun<Container::Pair>::starter {
+	class fun<Container::Pair>::starter : public def<struct ae2f_Pair> {
 	private:
-		struct ae2f_Pair* p;
+		ptr p;
 	public:
 		/// <param name="a">: base ptr</param>
 		inline starter(
-			ptr_ae2f_Pair a	// base ptr
+			ptr a	// base ptr
 		);
 
 		/// <param name="a">: key</param>
@@ -184,11 +184,9 @@ namespace ae2f {
 	namespace Container {
 		class Pair : public fun<Pair>::setter {
 		private:
-			struct ae2f_Pair obj;
+			orig obj;
 
 		public:
-			typedef ptr_ae2f_Pair binder;
-
 			/// <param name="a">: key</param>
 			/// <param name="b">: val</param>
 			inline Pair(
@@ -215,12 +213,12 @@ namespace ae2f {
 
 			/// <param name="a">: source</param>
 			inline Pair(
-				struct ae2f_Pair a	// source
+				orig a	// source
 			);
 
 			/// <param name="a">: source ptr</param>
 			inline Pair(
-				struct ae2f_Pair* a	// source ptr
+				ptr a	// source ptr
 			);
 
 			inline ~Pair();

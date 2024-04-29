@@ -116,9 +116,9 @@ namespace ae2f {
 		class getter;
 	};
 
-	class fun<Container::Dynamic>::getter {
+	class fun<Container::Dynamic>::getter : public def<struct ae2f_Dynamic> {
 	private:
-		struct ae2f_Dynamic* p;
+		ptr p;
 	public:
 		inline ptr_ae2f_Dynamic raw();
 
@@ -130,7 +130,7 @@ namespace ae2f {
 
 		/// <param name="a">: pointer</param>
 		inline getter(
-			ptr_ae2f_Dynamic a	// pointer
+			ptr a	// pointer
 		);
 
 		/// <param name="a">: value to be compared</param>
@@ -203,13 +203,13 @@ namespace ae2f {
 		inline fun<Container::Dynamic>::starter free();
 	};
 
-	class fun<Container::Dynamic>::starter {
+	class fun<Container::Dynamic>::starter : public def<struct ae2f_Dynamic> {
 	private:
-		struct ae2f_Dynamic* p;
+		ptr p;
 	public:
 		/// <param name="a">: pointer</param>
 		inline starter(
-			struct ae2f_Dynamic* a	// pointer
+			ptr a	// pointer
 		);
 
 		/// <param name="len">: length</param>
@@ -238,12 +238,12 @@ namespace ae2f {
 
 		/// <param name="a">: source</param>
 		inline setter copy(
-			struct ae2f_Dynamic a	// source
+			orig a	// source
 		);
 
 		/// <param name="a">: source ptr</param>
 		inline setter copy(
-			struct ae2f_Dynamic* a	// source ptr
+			ptr a	// source ptr
 		);
 
 		/// <typeparam name="v">: array type</typeparam>
@@ -259,10 +259,8 @@ namespace ae2f {
 	namespace Container {
 		class Dynamic : public fun<Dynamic>::setter {
 		private:
-			struct ae2f_Dynamic obj;
+			orig obj;
 		public:
-			typedef ptr_ae2f_Dynamic binder;
-
 			/// <param name="a">: length</param>
 			inline Dynamic(
 				uint64_t a	// length
@@ -315,7 +313,7 @@ namespace ae2f {
 		};
 		class Linked : public fun<Dynamic>::getter {
 		private:
-			struct ae2f_Dynamic obj;
+			orig obj;
 		public:
 
 			/// <typeparam name="v">: array pointer type</typeparam>
@@ -351,7 +349,7 @@ namespace ae2f {
 
 			/// <param name="a">: value source</param>
 			inline Linked(
-				struct ae2f_Dynamic a	// value source
+				orig a	// value source
 			);
 		};
 	}

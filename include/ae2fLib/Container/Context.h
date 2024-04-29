@@ -64,26 +64,29 @@ namespace ae2f {
 	};
 
 	class fun<Container::Context>::el : public Container::Dynamic::getter {
-	private:
-		ptr_ae2f_Context p;
 	public:
-		inline el(ptr_ae2f_Context a, uint64_t b);
-		inline ptr_ae2f_Context id();
+		typedef def<struct ae2f_Context> _root;
+
+		inline el(_root::ptr a, uint64_t b);
+		inline _root::ptr id();
 		inline setter del();
 		inline el& re(uint64_t a);
 		inline el& re(Container::Linked a);
+
+	private:
+		_root::ptr p;
 	};
 
-	class fun<Container::Context>::setter {
+	class fun<Container::Context>::setter : public def<struct ae2f_Context> {
 	private:
-		ptr_ae2f_Context p;
+		ptr p;
 	public:
 		uint64_t
 			& _amp,
 			& _div;
 
-		inline setter(ptr_ae2f_Context a);
-		inline ptr_ae2f_Context raw();
+		inline setter(ptr a);
+		inline ptr raw();
 		inline starter free();
 		inline el malloc(uint64_t a);
 	};
@@ -154,9 +157,9 @@ namespace ae2f {
 	namespace Container {
 		class Context : public fun<Container::Context>::setter {
 		private:
-			struct ae2f_Context obj;
+			orig obj;
 		public:
-			typedef ptr_ae2f_Context binder;
+			typedef ptr binder;
 
 			inline Context();
 			inline Context(setter a);

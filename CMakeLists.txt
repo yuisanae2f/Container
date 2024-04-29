@@ -21,7 +21,7 @@ set(HEADERS
     include/ae2fLib/Container/Pair.h
 )
 
-# Build set
+# Build lib set
 add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 # include directory

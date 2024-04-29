@@ -118,13 +118,128 @@ ae2f_Dynamic_weigh(
 
 ## ae2f_Dynamic_puts
 > copies `src` to `dest` without resizing the memory.  
-> returns the byte written from `src`.
+> returns the byte written from `src`.  
+
+> `sizeSelector` will decide the length of writing.  
+> If 0, the length will be the `src`'s.  
+> Otherwise, the length will be the `dest`.
 
 Code
 ```c
 uint64_t 
 ae2f_Dynamic_puts(
 	ptr_ae2f_Dynamic dest,
-	ptr_ae2f_Dynamic src
+	ptr_ae2f_Dynamic src,
+	int8_t sizeSelector
 );
 ```
+
+
+
+# Abstraction
+## getter
+
+### weigh
+- [weigh](#ae2f_dynamic_weigh)
+
+### ==
+> compares two [`ae2f_Dynamic`](#dynamic).  
+> returns if two are same.
+
+Ref
+- [weigh](#weigh)
+
+### <
+> compares two [`ae2f_Dynamic](#dynamic).  
+> returns if the right one is the greater.
+Ref
+- [weigh](#weigh)
+
+### >
+> compares two [`ae2f_Dynamic](#dynamic).  
+> returns if the left one is the greater.
+
+Ref
+- [weigh](#weigh)
+
+### <=
+> compares two [`ae2f_Dynamic](#dynamic).  
+> returns if the right one is the greater or the same.
+
+Ref
+- [weigh](#weigh)
+
+### >=
+> compares two [`ae2f_Dynamic](#dynamic).  
+> returns if the left one is the greater or the same.
+Ref
+- [weigh](#weigh)
+### puts
+- [ae2f_Dynamic_puts](#ae2f_dynamic_puts)
+## setter : [getter](#getter)
+Ref
+- [getter](#getter)
+
+### free
+- [ae2f_Dynamic_free](#ae2f_dynamic_free)
+
+### re
+Code
+```cpp
+setter& re(
+	uint64_t len
+);
+```
+
+Ref
+- [ae2f_Dynamic_re](#ae2f_dynamic_re)
+
+Code
+```cpp
+template<typename v>
+setter& re(
+	v* src,
+	uint64_t src_len
+);
+```
+
+```cpp
+setter& re(
+	Linked src
+);
+```
+
+Ref
+- [ae2f_Dynamic_re_](#ae2f_dynamic_re_)
+## starter
+### alloc
+Code
+```cpp
+inline setter alloc(
+	uint64_t len
+);
+```
+
+Ref
+- [ae2f_Dynamic](#ae2f_dynamic)
+
+Code
+```cpp
+template<typename v>
+inline setter alloc(
+	v* src_ptr,
+	uint64_t len
+);
+```
+
+Ref
+- [ae2f_Dynamic_](#ae2f_dynamic_)
+### copy
+- [ae2f_Dynamic_copy](#ae2f_dynamic_copy)
+
+# Classes
+## Dynamic : [setter](#setter)
+> allocates new heap memory to store, and copy the original value.
+
+## Linked : [getter](#getter)
+> stores the original pointer and its size.

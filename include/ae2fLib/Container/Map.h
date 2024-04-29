@@ -58,6 +58,7 @@ AE2F_CPP_PREFIX AE2F ptr_ae2f_Map ae2f_Map_copy(
 );
 #endif // !AE2F_MAP_FUN
 
+
 #ifdef AE2F_CPP
 #ifndef AE2F_MAP_CPP
 #define AE2F_MAP_CPP
@@ -75,32 +76,39 @@ namespace ae2f {
 		class starter;
 	};
 
-	class fun<Container::Map>::el : public fun<Container::Pair>::setter::el<Container::Pair::_val> {
-	private:
-		ptr_ae2f_Map p;
+	class fun<Container::Map>::el : 
+		public fun<Container::Pair>::setter::el<Container::Pair::_val>
+	{
 	public:
-		inline ptr_ae2f_Map id() { return p; }
+		typedef def<struct ae2f_Map> _root;
+
+	private:
+		_root::ptr p;
+	public:
+		inline _root::ptr id() { return p; }
+
 		/// <param name="a">: base map</param>
 		/// <param name="b">: pair within map</param>
-		inline el(ptr_ae2f_Map a, ptr_ae2f_Pair b);
+		inline el(_root::ptr a, ptr b);
+
 		inline setter del();
 		inline Container::Dynamic key() {
 			return fun<Container::Pair>::getter(this->raw()).get<Container::Pair::_key>();
 		}
 	};
 
-	class fun<Container::Map>::setter {
+	class fun<Container::Map>::setter : public def<struct ae2f_Map> {
 	private:
-		ptr_ae2f_Map p;
+		ptr p;
 	public:
-		inline ptr_ae2f_Map raw();
-
+		inline ptr raw();
+		
 		uint64_t
 			& _div,
 			& _amp;
 
 		/// <param name="a">: base ptr</param>
-		inline setter(ptr_ae2f_Map a);
+		inline setter(ptr a);
 
 		/// <param name="a">: key</param>
 		inline el at(
@@ -139,19 +147,19 @@ namespace ae2f {
 		inline starter free();
 	};
 
-	class fun<Container::Map>::starter {
+	class fun<Container::Map>::starter : public def<struct ae2f_Map> {
 	private:
-		ptr_ae2f_Map p;
+		ptr p;
 
 	public:
 		/// <param name="a">: base ptr</param>
-		inline starter(ptr_ae2f_Map a);
+		inline starter(ptr a);
 		inline setter alloc();
 
 		/// <param name="a">: source value</param>
-		inline setter copy(ptr_ae2f_Map a);
+		inline setter copy(ptr a);
 		/// <param name="a">: source value</param>
-		inline setter copy(struct ae2f_Map a);
+		inline setter copy(orig a);
 		/// <param name="a">: source value</param>
 		inline setter copy(setter a);
 		/// <param name="a">: source value</param>
@@ -161,15 +169,13 @@ namespace ae2f {
 	namespace Container {
 		class Map : public fun<Map>::setter {
 		private:
-			struct ae2f_Map obj;
+			orig obj;
 		public:
-			typedef ptr_ae2f_Map binder;
-
 			inline Map();
 			/// <param name="a">: source value</param>
-			inline Map(binder a);
+			inline Map(ptr a);
 			/// <param name="a">: source value</param>
-			inline Map(struct ae2f_Map a);
+			inline Map(orig a);
 			/// <param name="a">: source value</param>
 			inline Map(setter a);
 			/// <param name="a">: source value</param>

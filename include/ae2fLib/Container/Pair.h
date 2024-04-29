@@ -10,7 +10,9 @@ typedef struct ae2f_Pair {
 	union ae2f_Unit val;
 }* ptr_ae2f_Pair;
 
-typedef struct ae2f_Dynamic ae2f_Dynamic_owned;
+#define ae2f_Dynamic_owned ae2f_Dynamic
+#define ptr_ae2f_Dynamic_owned ptr_ae2f_Dynamic
+
 #endif // AE2F_PAIR
 
 #ifndef AE2F_PAIR_FUN
@@ -62,7 +64,7 @@ AE2F_CPP_PREFIX AE2F ptr_ae2f_Pair ae2f_Pair_set(
 
 /// <param name="a">: pair to get</param>
 /// <param name="b">: value on 1 otherwise key</param>
-AE2F_CPP_PREFIX AE2F ae2f_Dynamic_owned ae2f_Pair_get(
+AE2F_CPP_PREFIX AE2F struct ae2f_Dynamic_owned ae2f_Pair_get(
 	ptr_ae2f_Pair a,	// pair to get
 	int8_t b				// value on 1 otherwise key
 );

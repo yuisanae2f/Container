@@ -21,7 +21,8 @@ Ref
 
 Code
 ```c
-typedef struct ae2f_Dynamic ae2f_Dynamic_owned;
+#define ae2f_Dynamic_owned ae2f_Dynamic
+#define ptr_ae2f_Dynamic_owned ptr_ae2f_Dynamic
 ```
 
 Ref

@@ -19,6 +19,11 @@ set(HEADERS
     include/ae2fLib/Container/Dynamic.h
     include/ae2fLib/Container/Map.h
     include/ae2fLib/Container/Pair.h
+
+    include/ae2fLib/Container/Context.hpp
+    include/ae2fLib/Container/Dynamic.hpp
+    include/ae2fLib/Container/Map.hpp
+    include/ae2fLib/Container/Pair.hpp
 )
 
 # Build lib set
